@@ -1,5 +1,6 @@
 # YouTube Auto Comment And Like (YACAL)
 * Programatically Comment and Like Videos on YouTube without needing a Google oauth key.
+* Ready to go for modern updated (November 2020) x64 linux. Originally build on kali.
 
 ## How to Build
 * cd YouTube_Auto_Comment_And_Like
