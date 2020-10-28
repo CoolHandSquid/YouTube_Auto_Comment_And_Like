@@ -15,3 +15,6 @@
 # Useage
 * Change the channel_url, video_name, my_comment, and like variables in YouTube_Auto_Comment_And_like.py.
 * ./YouTube_Auto_Comment_And_like.py (as root)
+
+# Inspiration
+* NPR Up First needed to be notified early and often of how terrible they are at doing news.
