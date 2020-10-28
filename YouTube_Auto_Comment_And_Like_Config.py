@@ -1,7 +1,4 @@
-#!/usr/bin/pyhton3
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.keys import Keys
+#!/usr/bin/python3
 import os
 
 def os_init():
@@ -11,7 +8,7 @@ def os_init():
 	os.system("python3 -m pip install selenium")
 	os.system("wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip")
 	os.system("unzip chromedriver_linux64.zip")
-	os.system("ln -sf ./chromedriver /usr/bin/chromedriver")
+	os.system("ln -sf {}/chromedriver /usr/bin/chromedriver".format(os.getcwd()))
 
 """
 cd /opt
@@ -37,6 +34,9 @@ def init_persistant_cookie():
 
 def main():
 	os_init()
+	from selenium import webdriver
+	from selenium.webdriver.chrome.options import Options
+	from selenium.webdriver.common.keys import Keys
 	init_persistant_cookie()
 
 main()
