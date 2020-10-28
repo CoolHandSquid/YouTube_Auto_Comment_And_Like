@@ -22,6 +22,7 @@ def get_name():
 	video_name 	= "{}, {} {} {}".format(wday, month, day, year)
 	return video_name
 
+#link_button = driver.find_element_by_xpath('(//*[@id="video-title"])[3]')
 def comment(video_name, like):
 	options = Options()
 	#options.add_argument('--headless')
