@@ -5,14 +5,13 @@ from selenium.webdriver.common.keys import Keys
 import os
 
 def os_init():
-os.chdir("/opt")
-os.system("wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb")
-os.system("apt install gdebi-core")
-os.system("gdebi google-chrome-stable_current_amd64.deb")
-os.system("python3 -m pip install selenium")
-os.system("wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip")
-os.system("unzip chromedriver_linux64.zip")
-os.system("ln -sf /opt/chromedriver /usr/bin/chromedriver")
+	os.system("wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb")
+	os.system("apt install gdebi-core")
+	os.system("gdebi google-chrome-stable_current_amd64.deb")
+	os.system("python3 -m pip install selenium")
+	os.system("wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip")
+	os.system("unzip chromedriver_linux64.zip")
+	os.system("ln -sf ./chromedriver /usr/bin/chromedriver")
 
 """
 cd /opt
