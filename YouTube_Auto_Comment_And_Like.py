@@ -9,7 +9,7 @@ import time
 
 channel_url	= "https://www.youtube.com/channel/UCsTKuPfW15Zu8lVa1gDqlNQ"
 #video_name = "Tuesday October 27, 2020"	#Commented out because the get_name variable covers this for my useage
-my_comment = "Another bias broadcast by NPR Up First. I am embarrassed that we are funding this."
+my_comment = "Another bias broadcast by NPR Up First. It is a shame that we fund this."
 like = False #False will dislike the video. True will like the video
 
 def get_name():
@@ -19,11 +19,10 @@ def get_name():
 	year 	= str(my_date.year)
 	day 	= str(my_date.day)
 	month 	= str(calendar.month_name[my_date.month])
-	video_name 	= "{}, {} {}, {}".format(wday, month, day, year)
-	video_name2 = "{} {} {}, {}".format(wday, month, day, year)
-	return video_name, video_name2
-	
-def comment(video_name, video_name2, like):
+	video_name 	= "{}, {} {} {}".format(wday, month, day, year)
+	return video_name
+
+def comment(video_name, like):
 	options = Options()
 	#options.add_argument('--headless')
 	options.add_argument('--no-sandbox')
@@ -31,12 +30,8 @@ def comment(video_name, video_name2, like):
 	options.add_argument('user-data-dir=/root/.config/google-chrome')
 	driver = webdriver.Chrome('/usr/bin/chromedriver', options=options)
 	driver.get(channel_url)
-	try:
-		link_button = driver.find_element_by_link_text(video_name)
-		link_button.click()
-	except:
-		link_button = driver.find_element_by_link_text(video_name2)
-		link_button.click()
+	link_button = driver.find_element_by_link_text(video_name)
+	link_button.click()
 	time.sleep(1)
 	elem = driver.find_element_by_tag_name('html')
 	time.sleep(1)
@@ -53,20 +48,15 @@ def comment(video_name, video_name2, like):
 	time.sleep(1)
 	link_button = driver.find_element_by_xpath('//*[@id="placeholder-area"]')
 	link_button.click()
-	#time.sleep(1)
 	comment = driver.find_element_by_xpath('//*[@id="contenteditable-root"]')
-	#time.sleep(1)
 	comment.send_keys(my_comment)
-	#time.sleep(1)
 	link_button = driver.find_element_by_xpath('//*[@id="submit-button"]/a')
-	#time.sleep(1)
 	link_button.click()
 
 def main():
 	get_name()
-	print("Commenting on and like-or-dislikng {} and {}".format(video_name, video_name2))
-	#print("Commenting on and like-or-dislikng {}".format(video_name))
-	comment(video_name, video_name2, like)
+	print("Commenting on and like-or-dislikng {}".format(video_name))
+	comment(video_name, like)
 	#input("YEE")
 main()
 #f12, ctrl+ shift+c, click where you want to locate, rightclick in the analyzer, copy > copy xpath ### to find xpath

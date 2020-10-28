@@ -10,33 +10,24 @@ def os_init():
 	os.system("unzip chromedriver_linux64.zip")
 	os.system("ln -sf {}/chromedriver /usr/bin/chromedriver".format(os.getcwd()))
 
-"""
-cd /opt
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-apt install gdebi-core
-gdebi google-chrome-stable_current_amd64.deb
-python3 -m pip install selenium
-wget https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip
-unzip chromedriver_linux64.zip
-ln -sf /opt/chromedriver /usr/bin/chromedriver
-"""
-
 def init_persistant_cookie():
+	from selenium import webdriver
+	from selenium.webdriver.chrome.options import Options
+	from selenium.webdriver.common.keys import Keys
+
 	options = Options()
 	#options.add_argument('--headless')
 	options.add_argument('--no-sandbox')
 	options.add_argument('--disable-dev-shm-usage')
 	options.add_argument('user-data-dir=/root/.config/google-chrome')
 	driver = webdriver.Chrome('/usr/bin/chromedriver', options=options)
-	driver.get(channel_url)
-	input('Be sure to put log in to have the persistant cookie saved\n')
+	driver.get('https://mail.google.com')
+	input('Once you have logged into gmail, hit ENTER.\n')
+	input("You should be good to go to run YouTube_Auto_Comment_And_Like_Config.py!/nBe sure to edit the file to implement your comment, site, video, and whether to like or dislike.")
 	os.system('killall chrome')
 
 def main():
 	os_init()
-	from selenium import webdriver
-	from selenium.webdriver.chrome.options import Options
-	from selenium.webdriver.common.keys import Keys
 	init_persistant_cookie()
 
 main()
