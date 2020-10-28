@@ -1,7 +1,7 @@
 # YouTube Auto Comment And Like (YACAL)
 * Programatically Comment and Like Videos on YouTube without needing a Google oauth key.
 
-# How to Build
+## How to Build
 * cd YouTube_Auto_Comment_And_Like
 * chmod +x You*
 * (as root) ./YouTube_Auto_Comment_And_Like_Config.py
@@ -12,9 +12,11 @@
 
 * Authentication to YouTube is done with a traditional username and password for a google account held in the persistant cookie. The authentication will occur during the running of ./YouTube_Auto_Comment_And_Like_Config.py. 
 
-# Useage
+## Useage
 * Change the channel_url, video_name, my_comment, and like variables in YouTube_Auto_Comment_And_like.py.
 * ./YouTube_Auto_Comment_And_like.py (as root)
 
-# Inspiration
+## Inspiration
 * NPR Up First needed to be notified early and often of how terrible they are at doing news.
+## Contact
+Please contact me at coolhandsquid@yahoo.com for suggestions and ideas!
