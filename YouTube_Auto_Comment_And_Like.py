@@ -1,62 +1,91 @@
 #!/usr/bin/python3
 from selenium import webdriver
+import selenium.webdriver.support.ui as ui
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 import os
-import calendar
 from datetime import date
 import time
 
-channel_url	= "https://www.youtube.com/channel/UCsTKuPfW15Zu8lVa1gDqlNQ"
-my_comment = "What a shame we fund this."
-like = False #False will dislike the video. True will like the video
+channel_url = "https://www.youtube.com/channel/UCsTKuPfW15Zu8lVa1gDqlNQ"
+like 		= False
+my_comment	= "Not very Yeet at all"
+Num_of_Videos	= 1 #How many videos do you want to write to? YouTube only allows 250 per channel per day
 
-def comment(like):
-	options = Options()
-	#options.add_argument('--headless')
-	options.add_argument('--no-sandbox')
-	options.add_argument('--disable-dev-shm-usage')
-	options.add_argument('user-data-dir=/root/.config/google-chrome')
-	driver = webdriver.Chrome('/usr/bin/chromedriver', options=options)
-	driver.get(channel_url)
-	link_button = driver.find_element_by_xpath('(//*[@id="video-title"])[1]')
-	link_button.click()
+
+bstart 	= time.time()
+Num_of_Videos += 1
+options = Options()
+#options.add_argument('--headless')
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
+options.add_argument('user-data-dir=/root/.config/google-chrome')
+driver = webdriver.Chrome('/usr/bin/chromedriver', options=options)
+driver.get(channel_url)
+time.sleep(1)
+elem = driver.find_element_by_tag_name('html')
+for i in range(11):
+	elem.send_keys(Keys.DOWN)
+time.sleep(1)
+
+for vn in range(1,Num_of_Videos):
+	start = time.time()
+	#open new tab, switch to it and prepare it logic
+	driver.find_element_by_xpath('(//*[@id="video-title"])[{}]'.format(vn)).send_keys(Keys.CONTROL,Keys.RETURN)
+	time.sleep(1)
+	driver.switch_to.window(driver.window_handles[1])
 	time.sleep(1)
 	elem = driver.find_element_by_tag_name('html')
-	time.sleep(1)
 	for i in range(10):
 		elem.send_keys(Keys.DOWN)
-
-	#if "like" Hit dislike first and then dislike. This eliminates the possibility of double likeing something (which makes the action NULL)
+#	input("did it scroll?")
+	#like/dislike logic
 	time.sleep(1)
 	if like == True:
-		i = 2
-		link_button = driver.find_element_by_xpath('//*[@id="top-level-buttons"]/ytd-toggle-button-renderer[{}]/a'.format(i))
+		l = 2
+		link_button = driver.find_element_by_xpath('//*[@id="top-level-buttons"]/ytd-toggle-button-renderer[{}]/a'.format(l))
 		link_button.click()
 		time.sleep(1)
-		i = 1
-		link_button = driver.find_element_by_xpath('//*[@id="top-level-buttons"]/ytd-toggle-button-renderer[{}]/a'.format(i))
+		l = 1
+		link_button = driver.find_element_by_xpath('//*[@id="top-level-buttons"]/ytd-toggle-button-renderer[{}]/a'.format(l))
 		link_button.click()
 	else:
-		i = 1
-		link_button = driver.find_element_by_xpath('//*[@id="top-level-buttons"]/ytd-toggle-button-renderer[{}]/a'.format(i))
+		l = 1
+		link_button = driver.find_element_by_xpath('//*[@id="top-level-buttons"]/ytd-toggle-button-renderer[{}]/a'.format(l))
 		link_button.click()
 		time.sleep(1)
-		i = 2
-		link_button = driver.find_element_by_xpath('//*[@id="top-level-buttons"]/ytd-toggle-button-renderer[{}]/a'.format(i))
+		l = 2
+		link_button = driver.find_element_by_xpath('//*[@id="top-level-buttons"]/ytd-toggle-button-renderer[{}]/a'.format(l))
 		link_button.click()
-
-	time.sleep(1)
+#	input("did it dislike?")
+	#Comment logic
+	time.sleep(2)
 	link_button = driver.find_element_by_xpath('//*[@id="placeholder-area"]')
 	link_button.click()
+	time.sleep(1)
 	comment = driver.find_element_by_xpath('//*[@id="contenteditable-root"]')
 	comment.send_keys(my_comment)
 	link_button = driver.find_element_by_xpath('//*[@id="submit-button"]/a')
 	link_button.click()
+	time.sleep(1)
+#	input("did it comment?")
+	#Scroll logic
+	driver.close()
+	driver.switch_to.window(driver.window_handles[0])
+	elem = driver.find_element_by_tag_name('html')
+	if vn % 6 == 1:
+		for s in range(6):
+			elem.send_keys(Keys.DOWN)
+	else:
+		pass
+	end 		= time.time()
+	vruntime 	= int((end - start))
+	runtime 	= int((end - bstart))
+	print("videos:{} vidtime:{} runtime:{}\n".format(vn, vruntime, runtime))
+#	input("How are we doing?")
 
-def main():
-	print("Commenting on and like-or-dislikng the newest video on {}".format(channel_url))
-	comment(like)
-	#input("YEE")
-main()
-#f12, ctrl+ shift+c, click where you want to locate, rightclick in the analyzer, copy > copy xpath ### to find xpath
+
+#12
+#driver.find_element_by_tag_name('body').send_keys(Keys.COMMAND + 't')
+
+#driver.find_element_by_xpath('(//*[@id="video-title"])[7]').send_keys(Keys.CONTROL + Keys.RETURN)
