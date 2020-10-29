@@ -14,7 +14,6 @@ Num_of_Videos	= 1 #How many videos do you want to write to? YouTube only allows 
 
 
 bstart 	= time.time()
-Num_of_Videos += 1
 options = Options()
 #options.add_argument('--headless')
 options.add_argument('--no-sandbox')
@@ -28,7 +27,7 @@ for i in range(11):
 	elem.send_keys(Keys.DOWN)
 time.sleep(1)
 
-for vn in range(1,Num_of_Videos):
+for vn in range(1, (Num_of_Videos + 1)):
 	start = time.time()
 	#open new tab, switch to it and prepare it logic
 	driver.find_element_by_xpath('(//*[@id="video-title"])[{}]'.format(vn)).send_keys(Keys.CONTROL,Keys.RETURN)
