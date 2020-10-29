@@ -23,7 +23,7 @@ def init_persistant_cookie():
 	driver = webdriver.Chrome('/usr/bin/chromedriver', options=options)
 	driver.get('https://mail.google.com')
 	input('Once you have logged into gmail, hit ENTER.\n')
-	input("You should be good to go to run YouTube_Auto_Comment_And_Like_Config.py!/nBe sure to edit the file to implement your comment, site, video, and whether to like or dislike.")
+	input("You should be good to go to run YouTube_Auto_Comment_And_Like_Config.py!\nBe sure to edit the file to implement your comment, site, video, and whether to like or dislike.")
 	os.system('killall chrome')
 
 def main():
