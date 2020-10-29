@@ -83,9 +83,3 @@ for vn in range(1,Num_of_Videos):
 	runtime 	= int((end - bstart))
 	print("videos:{} vidtime:{} runtime:{}\n".format(vn, vruntime, runtime))
 #	input("How are we doing?")
-
-
-#12
-#driver.find_element_by_tag_name('body').send_keys(Keys.COMMAND + 't')
-
-#driver.find_element_by_xpath('(//*[@id="video-title"])[7]').send_keys(Keys.CONTROL + Keys.RETURN)
