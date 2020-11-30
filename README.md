@@ -21,4 +21,4 @@
 ## Inspiration
 * NPR Up First needed to be notified early and often of how terrible they are at doing news.
 ## Contact
-Please contact me at ycsquilly@gmail.com for suggestions and ideas!
+Please contact me at CoolHandSquid32@gmail.com for suggestions and ideas!
